@@ -12,13 +12,24 @@
 
 void main(void) 
 {
-	unsigned int count=0;
+	unsigned int count=0b000000001;
     LEDarray_init();
-  
-    while (1) {
-		count++; // increment count
-		if (count>511) {count=0;} //reset a when it gets too big
+    int a = 1;
+    while (count<0b100000000) 
+    {
+		
 		LEDarray_disp_bin(count); //output a on the LED array in binary
-		__delay_ms(50); // Delay so human eye can see change
-    }
+		__delay_ms(300); // Delay so human eye can see change
+        count = count <<1; // increment count
+        
+    } 
+    while (count>0b000000001) 
+    {
+		
+		LEDarray_disp_bin(count); //output a on the LED array in binary
+		__delay_ms(300); // Delay so human eye can see change
+        count = count >>1; // increment count
+        
+        
+    } 
 }
