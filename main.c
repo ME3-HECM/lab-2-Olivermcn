@@ -7,34 +7,19 @@
  * #include directives...
  ************************************/
 #include "LEDarray.h"
+#include "ADC.h"
 #include <xc.h>
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz
 
 void main(void) 
 {
-	unsigned int count=0;
+	ADC_init();
     LEDarray_init();
-    
-while(1)
-{
-    while (!PORTFbits.RF2)//empty while loop (wait for button press)
+    unsigned int LDR;
+    while(1)
     {
-        __delay_ms(500);//wait 500ms for press
-        count+=10;//increment count
-        LEDarray_disp_dec(count); //output a on the LED array in decimal 
-        __delay_ms(50); // Delay so human eye can see change
-        while(!PORTFbits.RF2)//instant response
-        {
-            count+=10;//increment count 
-            if (count>110) 
-            {
-                count=0;
-            } //reset a when it gets too big
-            LEDarray_disp_dec(count); //output a on the LED array in binary
-            __delay_ms(50); // Delay so human eye can see change
-            
-        }
-    }
-}
-
+    LDR = ADC_getval(); //get ADC voltage refrence value
+    LEDarray_disp_bin(LDR); //display LDR value
+    __delay_ms(500);
+    }   
 }
