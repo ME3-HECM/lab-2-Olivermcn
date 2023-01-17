@@ -14,21 +14,20 @@ void main(void)
 {
 	unsigned int count=0b000000001;
     LEDarray_init();
-    int a = 1;
-    while (count<0b100000000) 
+    while (count<0b100000000) //scan forwards
     {
 		
 		LEDarray_disp_bin(count); //output a on the LED array in binary
-		__delay_ms(300); // Delay so human eye can see change
-        count = count <<1; // increment count
+		__delay_ms(50); // Delay so human eye can see change
+        count = count <<1; // increment count bitwise to the left
         
-    } 
-    while (count>0b000000001) 
+    }
+    while (count>0b000000001) //scan backwards
     {
 		
 		LEDarray_disp_bin(count); //output a on the LED array in binary
-		__delay_ms(300); // Delay so human eye can see change
-        count = count >>1; // increment count
+		__delay_ms(50); // Delay so human eye can see change
+        count = count >>1; // increment count bitwise to the right
         
         
     } 
