@@ -138,11 +138,73 @@ void LEDarray_disp_bin(unsigned int number)
 void LEDarray_disp_dec(unsigned int number)
 {
 	unsigned int disp_val;
+    if (number >= 10) //10
+  {
+     disp_val = 0b000000001;
+   
+  }
+
+  if (number >= 20) //20
+  {
+     disp_val = 0b000000010;
+   
+  }
+
+  if (number >=30) //30
+  {
+     disp_val = 0b000000100;
+   
+  }
+
+  if (number >=40) //40
+  {
+     disp_val = 0b000001000;
+   
+  }
+ 
+
+  if (number >=50) //50
+  {
+     disp_val = 0b000010000;
+    
+  }
+ 
+  if (number >=60) //60
+  {
+     disp_val = 0b000100000;
+   
+  }
+
+  if (number >=70) //70
+  {
+     disp_val = 0b001000000;
+    
+  }
+
+  if (number >=80) //80
+  {
+     disp_val = 0b010000000;
+   
+  }
+
+  if (number >=90) //90
+  {
+     disp_val = 0b100000000;
+     
+  }
+ 
+  if (number >=100) //100
+  {
+     disp_val = 0b000000001;
+    
+  }
+  
 	
 	//some code to manipulate the variable number into the correct
 	//format and store in disp_val for display on the LED array
 
-	LEDarray_disp_bin(disp_val); 	//display value on LED array
+	 	//display value on LED array
+      LEDarray_disp_bin(disp_val);
 }
 
 

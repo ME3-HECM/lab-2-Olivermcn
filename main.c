@@ -20,17 +20,17 @@ while(1)
     while (!PORTFbits.RF2)//empty while loop (wait for button press)
     {
         __delay_ms(500);//wait 500ms for press
-        count++;//increment count
-        LEDarray_disp_bin(count); //output a on the LED array in binary
+        count+=10;//increment count
+        LEDarray_disp_dec(count); //output a on the LED array in decimal 
         __delay_ms(50); // Delay so human eye can see change
         while(!PORTFbits.RF2)//instant response
         {
-            count++;//increment count 
-            if (count>511) 
+            count+=10;//increment count 
+            if (count>110) 
             {
                 count=0;
             } //reset a when it gets too big
-            LEDarray_disp_bin(count); //output a on the LED array in binary
+            LEDarray_disp_dec(count); //output a on the LED array in binary
             __delay_ms(50); // Delay so human eye can see change
             
         }
