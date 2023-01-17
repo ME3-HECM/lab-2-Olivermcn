@@ -121,6 +121,7 @@ void LEDarray_disp_bin(unsigned int number)
     //if statements and bit masks can be used to determine if a particular pin should be on/off
 	
 	//see Readme.md for examples
+  
 }
 
 /************************************
@@ -131,10 +132,11 @@ void LEDarray_disp_bin(unsigned int number)
 void LEDarray_disp_dec(unsigned int number)
 {
 	unsigned int disp_val;
+    int i;
     if (number >= 19) //19 slightly higher value so a return of lowest LDR value should be expected
   {
      disp_val = 0b000000001;
-   
+     
   }
 
   if (number >= 29) //20
@@ -195,7 +197,66 @@ void LEDarray_disp_dec(unsigned int number)
 	 	//display value on LED array
       LEDarray_disp_bin(disp_val);
 }
+void LEDarray_disp_upto(unsigned int number)//function to display all LED's up to that number
+{
+    unsigned int disp_val;
+    if (number >= 19) //19 slightly higher value so a return of lowest LDR value should be expected
+  {
+     disp_val = 0b000000001;
+     
+  }
 
+  if (number >= 29) //20
+  {
+     disp_val = 0b000000011;
+   
+  }
+
+  if (number >=30) //30
+  {
+     disp_val = 0b000000111;
+   
+  }
+
+  if (number >=40) //40
+  {
+     disp_val = 0b000001111;
+   
+  }
+ 
+
+  if (number >=50) //50
+  {
+     disp_val = 0b000011111;
+    
+  }
+ 
+  if (number >=60) //60
+  {
+     disp_val = 0b000111111;
+   
+  }
+
+  if (number >=70) //70
+  {
+     disp_val = 0b001111111;
+    
+  }
+
+  if (number >=80) //80
+  {
+     disp_val = 0b011111111;
+   
+  }
+
+  if (number >=90) //90
+  {
+     disp_val = 0b111111111;
+     
+  }
+  LEDarray_disp_bin(disp_val);//display value on LED array
+ 
+}
 
 /************************************
 / LEDarray_disp_PPM
@@ -206,6 +267,7 @@ void LEDarray_disp_dec(unsigned int number)
 void LEDarray_disp_PPM(unsigned int cur_val, unsigned int max)
 {
 	unsigned int disp_val;
+    
 	
 	// some code to format the variable cur_val and max, store in disp_val for display on the LED array
 	// hint: one method is to manipulate the variables separately and then combine them using the bitwise OR operator

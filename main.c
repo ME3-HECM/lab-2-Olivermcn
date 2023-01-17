@@ -13,13 +13,14 @@
 
 void main(void) 
 {
+    int a = 0;
 	ADC_init();
     LEDarray_init();
     unsigned int LDR;
     while(1)
     {
     LDR = ADC_getval(); //get ADC voltage refrence value
-    LEDarray_disp_dec(LDR); //display LDR value
+    LEDarray_disp_upto(LDR); //display LDR value
     __delay_ms(500);
     }   
 }
