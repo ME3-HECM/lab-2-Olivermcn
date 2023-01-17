@@ -12,23 +12,18 @@
 
 void main(void) 
 {
-	unsigned int count=0b000000001;
+	unsigned int count=0;
     LEDarray_init();
-    while (count<0b100000000) //scan forwards
-    {
-		
+  
+    while (1) {
+        while (PORTFbits.RF2);  //empty while loop (wait for button press)
+            if (!PORTFbits.RF2)
+            {
+                count=count+1;//increment count
+                
+            }
+		if (count>511) {count=0;} //reset a when it gets too big
 		LEDarray_disp_bin(count); //output a on the LED array in binary
-		__delay_ms(50); // Delay so human eye can see change
-        count = count <<1; // increment count bitwise to the left
-        
+		__delay_ms(200); // Delay so human eye can see change
     }
-    while (count>0b000000001) //scan backwards
-    {
-		
-		LEDarray_disp_bin(count); //output a on the LED array in binary
-		__delay_ms(50); // Delay so human eye can see change
-        count = count >>1; // increment count bitwise to the right
-        
-        
-    } 
 }

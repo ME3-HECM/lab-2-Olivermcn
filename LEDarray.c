@@ -30,6 +30,9 @@ void LEDarray_init(void)
     LATBbits.LATB1 = 0;
     LATCbits.LATC6 = 0;
     
+    // setup pin for input (connected to button)
+    TRISFbits.TRISF2=1; //set TRIS value for pin (input)
+    ANSELFbits.ANSELF2=0; //turn off analogue input on pin 
     
 }
 
