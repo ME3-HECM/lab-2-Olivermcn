@@ -19,7 +19,7 @@ void main(void)
     while(1)
     {
     LDR = ADC_getval(); //get ADC voltage refrence value
-    LEDarray_disp_bin(LDR); //display LDR value
+    LEDarray_disp_dec(LDR); //display LDR value
     __delay_ms(500);
     }   
 }

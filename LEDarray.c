@@ -116,14 +116,7 @@ void LEDarray_disp_bin(unsigned int number)
   {
       LATBbits.LATB1 = 0;
   }
-  if (number & 0b00001011) //10
-  {
-      LATCbits.LATC6 = 1;
-  }
-  else 
-  {
-      LATCbits.LATC6 = 0;
-  }
+  
   
     //if statements and bit masks can be used to determine if a particular pin should be on/off
 	
@@ -138,13 +131,13 @@ void LEDarray_disp_bin(unsigned int number)
 void LEDarray_disp_dec(unsigned int number)
 {
 	unsigned int disp_val;
-    if (number >= 10) //10
+    if (number >= 19) //19 slightly higher value so a return of lowest LDR value should be expected
   {
      disp_val = 0b000000001;
    
   }
 
-  if (number >= 20) //20
+  if (number >= 29) //20
   {
      disp_val = 0b000000010;
    
@@ -193,11 +186,7 @@ void LEDarray_disp_dec(unsigned int number)
      
   }
  
-  if (number >=100) //100
-  {
-     disp_val = 0b000000001;
-    
-  }
+ 
   
 	
 	//some code to manipulate the variable number into the correct
