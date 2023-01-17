@@ -264,14 +264,124 @@ void LEDarray_disp_upto(unsigned int number)//function to display all LED's up t
 / cur_val is the current level from the most recent sample, and max is the peak value for the last second
 / these input values need to calculated else where in your code
 ************************************/
+
 void LEDarray_disp_PPM(unsigned int cur_val, unsigned int max)
 {
 	unsigned int disp_val;
+    unsigned int max_bin;
+    unsigned int cur_bin;
+//figuring out the led output for the peak value 
+    if (cur_val >= 13) //16 slightly higher value so a return of lowest LDR value should be expected
+  {      
+     cur_bin = 0b000000001;   
+  }
+
+  if (cur_val >= 20) //20
+  {
+     cur_bin = 0b000000010;
+   
+  }
+
+  if (cur_val >=31) //30
+  {
+     cur_bin = 0b000000100;
+   
+  }
+
+  if (cur_val >=40) //40
+  {
+     cur_bin = 0b000001000;
+   
+  }
+
+  if (cur_val >=50) //50
+  {
+     cur_bin = 0b000010000;
     
-	
+  }
+ 
+  if (cur_val >=60) //60
+  {
+     cur_bin = 0b000100000;
+   
+  }
+
+  if (cur_val >=70) //70
+  {
+     cur_bin = 0b001000000;
+    
+  }
+
+  if (cur_val >=80) //80
+  {
+     cur_bin = 0b010000000;
+   
+  }
+
+  if (cur_val >=90) //90
+  {
+     cur_bin = 0b100000000;    
+  }
+
+//figuring out the led output for the max    
+    if (max >= 13) //19 slightly higher value so a return of lowest LDR value should be expected
+  {
+        
+     max_bin = 0b000000001;
+     
+  }
+
+  if (max >= 20) //20
+  {
+     max_bin = 0b000000011;
+   
+  }
+
+  if (max >=31) //30
+  {
+     max_bin = 0b000000111;
+   
+  }
+
+  if (max >=40) //40
+  {
+     max_bin = 0b000001111;
+   
+  }
+ 
+
+  if (max >=50) //50
+  {
+     max_bin = 0b000011111;
+    
+  }
+ 
+  if (max >=60) //60
+  {
+     max_bin = 0b000111111;
+   
+  }
+
+  if (max >=70) //70
+  {
+     max_bin = 0b001111111;
+    
+  }
+
+  if (max >=80) //80
+  {
+     max_bin = 0b011111111;
+   
+  }
+
+  if (max >=90) //90
+  {
+     max_bin = 0b111111111;
+     
+  }
 	// some code to format the variable cur_val and max, store in disp_val for display on the LED array
 	// hint: one method is to manipulate the variables separately and then combine them using the bitwise OR operator
-
-	LEDarray_disp_bin(disp_val);	//display value on LED array
+    disp_val = cur_bin | max_bin; //put both values together
+	LEDarray_disp_bin(disp_val);	//display value on LED array 
 }
 
