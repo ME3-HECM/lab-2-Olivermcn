@@ -1,53 +1,24 @@
-/************************************
- * #pragma directives...
-************************************/
-#pragma config FEXTOSC = HS
-#pragma config RSTOSC = EXTOSC_4PLL 
-#pragma config WDTE = OFF        
+#pragma config FEXTOSC = HS     // External Oscillator mode Selection bits (HS (crystal oscillator) above 8 MHz; PFM set to high power)
+#pragma config RSTOSC = EXTOSC_4PLL// Power-up default value for COSC bits (EXTOSC with 4x PLL, with EXTOSC operating per FEXTOSC bits)
+#pragma config WDTE = OFF        // WDT operating mode (WDT enabled regardless of sleep)
+     
 
 /************************************
  * #include directives...
  ************************************/
+#include "LEDarray.h"
 #include <xc.h>
+#define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz
 
-/************************************
- * #define directives...
- ************************************/
-#define _XTAL_FREQ 64000000 
-
-/************************************
-/ main function
- * ...
-************************************/
-void main(void) {    
-    // setup pin for output (connected to LED)
-    LATDbits.LATD7=0;   //set initial output state
-    TRISDbits.TRISD7=0; //set TRIS value for pin (output)
-    
-    // setup pin for input (connected to button)
-    TRISFbits.TRISF2=1; //set TRIS value for pin (input)
-    ANSELFbits.ANSELF2=0; //turn off analogue input on pin  
-    
-    // setup pin for output (connected to LED)
-    LATHbits.LATH3=0;   //set initial output state
-    TRISHbits.TRISH3=0; //set TRIS value for pin (output)
-    
-    // setup pin for input (connected to button)
-    TRISFbits.TRISF3=1; //set TRIS value for pin (input)
-    ANSELFbits.ANSELF3=0; //turn off analogue input on pin
-   
-    while (1) { //infinite while loop - repeat forever
-        
-         while (PORTFbits.RF2 && PORTFbits.RF3);  //empty while loop (wait for button press)
-            if (!PORTFbits.RF2)
-            {
-              LATDbits.LATD7 = !LATDbits.LATD7; //toggle LED
-            }
-       // while (PORTFbits.RF3);
-            if(!PORTFbits.RF3)
-            { 
-              LATHbits.LATH3 = !LATHbits.LATH3; //toggle LED
-            }
-        __delay_ms(200); // call built in delay function 
+void main(void) 
+{
+	unsigned int count=0;
+    LEDarray_init();
+  
+    while (1) {
+		count++; // increment count
+		if (count>511) {count=0;} //reset a when it gets too big
+		LEDarray_disp_bin(count); //output a on the LED array in binary
+		__delay_ms(50); // Delay so human eye can see change
     }
 }

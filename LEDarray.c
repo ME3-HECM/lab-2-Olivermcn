@@ -7,8 +7,30 @@
 ************************************/
 void LEDarray_init(void)
 {
-    	//set up TRIS registers for pins connected to LED array
-	//set initial output LAT values (they may have random values when powered on)
+    //set up TRIS registers for pins connected to LED array
+    TRISGbits.TRISG0 = 0;
+    TRISGbits.TRISG1 = 0;
+    TRISAbits.TRISA2 = 0;
+    TRISFbits.TRISF6 = 0;
+    TRISAbits.TRISA4 = 0;
+    TRISAbits.TRISA5 = 0;
+    TRISFbits.TRISF0 = 0;
+    TRISBbits.TRISB0 = 0;
+    TRISBbits.TRISB1 = 0;
+    TRISCbits.TRISC6 = 0;
+    //set initial output LAT values (they may have random values when powered on)
+    LATGbits.LATG0 = 0;
+    LATGbits.LATG1 = 0;
+    LATAbits.LATA2 = 0;
+    LATFbits.LATF6 = 0;
+    LATAbits.LATA4 = 0;
+    LATAbits.LATA5 = 0;
+    LATFbits.LATF0 = 0;
+    LATBbits.LATB0 = 0;
+    LATBbits.LATB1 = 0;
+    LATCbits.LATC6 = 0;
+    
+    
 }
 
 /************************************
@@ -18,7 +40,90 @@ void LEDarray_init(void)
 void LEDarray_disp_bin(unsigned int number)
 {
 	//some code to turn on/off the pins connected to the LED array
-	//if statements and bit masks can be used to determine if a particular pin should be on/off
+  if (number & 0b000000001) //1
+  {
+      LATGbits.LATG0 = 1;
+  }
+  else 
+  {
+      LATGbits.LATG0 = 0;
+  }
+  if (number & 0b000000010) //2
+  {
+      LATGbits.LATG1 = 1;
+  }
+  else 
+  {
+      LATGbits.LATG1 = 0;
+  }
+  if (number & 0b000000100) //3
+  {
+      LATAbits.LATA2 = 1;
+  }
+  else 
+  {
+      LATAbits.LATA2 = 0;
+  }
+  if (number & 0b000001000) //4
+  {
+      LATFbits.LATF6 = 1;
+  }
+  else 
+  {
+      LATFbits.LATF6 = 0;
+  }
+
+  if (number & 0b000010000) //5
+  {
+      LATAbits.LATA4 = 1;
+  }
+  else 
+  {
+      LATAbits.LATA4 = 0;
+  }
+  if (number & 0b000100000) //6
+  {
+      LATAbits.LATA5 = 1;
+  }
+  else 
+  {
+      LATAbits.LATA5 = 0;
+  }
+  if (number & 0b001000000) //7
+  {
+      LATFbits.LATF0 = 1;
+  }
+  else 
+  {
+      LATFbits.LATF0 = 0;
+  }
+  if (number & 0b010000000) //8
+  {
+      LATBbits.LATB0 = 1;
+  }
+  else 
+  {
+      LATBbits.LATB0 = 0;
+  }
+  if (number & 0b100000000) //9
+  {
+      LATBbits.LATB1 = 1;
+  }
+  else 
+  {
+      LATBbits.LATB1 = 0;
+  }
+  if (number & 0b00001011) //10
+  {
+      LATCbits.LATC6 = 1;
+  }
+  else 
+  {
+      LATCbits.LATC6 = 0;
+  }
+  
+    //if statements and bit masks can be used to determine if a particular pin should be on/off
+	
 	//see Readme.md for examples
 }
 
