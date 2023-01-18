@@ -19,10 +19,10 @@ void main(void)
     int oldLDRval = 0;
     while(1)
     {
-        LDR = ADC_getval(); //get ADC voltage refrence value
+        LDR = ADC_getval(); //get ADC voltage reference value
         while (oldLDRval>LDR)
         {
-            LDR = ADC_getval(); //get new ADC voltage refrence value
+            LDR = ADC_getval(); //get new ADC voltage reference value
             LEDarray_disp_PPM(oldLDRval, LDR);
             oldLDRval = oldLDRval - 10;
             __delay_ms(1000);
